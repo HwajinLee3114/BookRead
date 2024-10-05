@@ -13,6 +13,9 @@ const Header: React.FC = () => {
           <li><Link href="/contract">Contact</Link></li>
         </ul>
       </nav>
+      <div>
+        <Link href="/login">Login</Link>
+      </div>
     </header>
   );
 };

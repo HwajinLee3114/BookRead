@@ -1,5 +1,14 @@
+input::placeholder {
+    color: #B3B3B3;
+    opacity: 1;
+  }
+
 .hg100 {
     height: 100%;
+}
+
+.wd70 {
+    width: 70%;
 }
 
 .dflex {
@@ -8,4 +17,50 @@
 
 .gap10 {
     gap: 10px;
+}
+
+.pd1rem {
+    padding: 1rem;
+}
+
+.mgt1rem {
+    margin-top: 1rem;
+}
+
+.mgtb1rem {
+    margin: 1rem 0;
+}
+
+/* ====== 버튼 ====== */
+.g_btn {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #a2bdd9;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &.save {
+        background-color: #33e6a4;
+    }
+    &.add {
+        background-color: #338ae6;
+    }
+    &.update {
+        background-color: #e68733;
+    }
+    &.delete {
+        background-color: #e63c33;
+    }
+}
+
+.g_btn:hover {
+    background-color: aquamarine;
+}
+
+.g_invalid {
+    margin-top: 0.5rem;
+    color: #EC221F;
+    font-size: small;
 }

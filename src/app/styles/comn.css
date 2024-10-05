@@ -1,0 +1,11 @@
+.hg100 {
+    height: 100%;
+}
+
+.dflex {
+    display: flex;
+}
+
+.gap10 {
+    gap: 10px;
+}

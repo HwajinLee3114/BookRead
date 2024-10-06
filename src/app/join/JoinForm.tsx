@@ -7,8 +7,10 @@ const JoinForm: React.FC = () => {
   const [nick, setNick] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [repassword, setRePassword] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
-  //   const [passwordError, setPasswordError] = useState<string>("");
+  const [passwordError, setPasswordError] = useState<string>("");
+  const [repasswordError, setRePasswordError] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -25,8 +27,15 @@ const JoinForm: React.FC = () => {
 
     if (name === "password") {
       setPassword(value);
-      //   const { isValid, errorMessage } = validateInput(name, value);
-      //   setPasswordError(isValid ? "" : errorMessage || '');
+      const { isValid, errorMessage } = validateInput(name, value);
+      setPasswordError(isValid ? "" : errorMessage || "");
+    }
+
+    if (name === "repassword") {
+      setRePassword(value);
+      setRePasswordError(
+        password != value ? "비밀번호가 일치하지 않습니다." : ""
+      );
     }
   };
 
@@ -71,9 +80,7 @@ const JoinForm: React.FC = () => {
         required
         className="g_input"
       />
-      {emailError && (
-        <p className="g_invalid">유효한 이메일 주소를 입력해 주세요.</p>
-      )}
+      {emailError && <p className="g_invalid">{emailError}</p>}
 
       <label htmlFor="password" className="g_label mgt_1r">
         비밀번호
@@ -87,21 +94,21 @@ const JoinForm: React.FC = () => {
         required
         className="g_input"
       />
-      <p className="g_invalid">비밀번호는 영문, 숫자, 특수문자 포함 8자 이상입니다.</p>
+      {passwordError && <p className="g_invalid">{passwordError}</p>}
 
       <label htmlFor="password" className="g_label mgt_1r">
         비밀번호 확인
       </label>
       <input
         type="password"
-        value={password}
-        name="password"
+        value={repassword}
+        name="repassword"
         onChange={handleChange}
         placeholder="비밀번호를 입력하세요"
         required
         className="g_input"
       />
-      <p className="g_invalid">비밀번호가 일치하지 않습니다.</p>
+      {repasswordError && <p className="g_invalid">{repasswordError}</p>}
 
       <button type="button" onClick={handleLogin} className="g_btn mgt_1r">
         회원가입

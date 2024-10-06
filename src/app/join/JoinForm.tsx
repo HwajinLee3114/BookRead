@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { validateInput } from "@/utils/comn";
+import InputField from "@/components/InputField";
 
 const JoinForm: React.FC = () => {
   const [nick, setNick] = useState<string>("");
@@ -39,6 +40,10 @@ const JoinForm: React.FC = () => {
     }
   };
 
+  const handleDuplicateCheck = () => {
+    
+  }
+
   const handleLogin = async () => {
     const loginData = {
       email,
@@ -51,64 +56,47 @@ const JoinForm: React.FC = () => {
 
   return (
     <div className="g_form_container mgt_1r">
-      <label className="g_label" htmlFor="email">
-        닉네임
-      </label>
-      <div className="g_input_wrap">
-        <input
-          type="text"
-          value={nick}
-          name="nickname"
-          onChange={handleChange}
-          placeholder="닉네임을 입력하세요"
-          required
-          className="g_input"
-        />
-        <button className="g_btn check">중복확인</button>
-      </div>
+      <InputField
+        label="닉네임"
+        type="text"
+        value={nick}
+        name="nickname"
+        placeholder="닉네임을 입력하세요"
+        onChange={handleChange}
+        buttonLabel="중복확인"
+        onButtonClick={handleDuplicateCheck}
+      />
       <p className="g_invalid">중복된 닉네임 입니다.</p>
 
-      <label className="g_label" htmlFor="email">
-        이메일
-      </label>
-      <input
+      <InputField
+        label="이메일"
         type="email"
         value={email}
         name="email"
-        onChange={handleChange}
         placeholder="이메일을 입력하세요"
-        required
-        className="g_input"
+        onChange={handleChange}
+        errorMessage={emailError}
       />
-      {emailError && <p className="g_invalid">{emailError}</p>}
 
-      <label htmlFor="password" className="g_label mgt_1r">
-        비밀번호
-      </label>
-      <input
+      <InputField
+        label="비밀번호"
         type="password"
         value={password}
         name="password"
-        onChange={handleChange}
         placeholder="비밀번호를 입력하세요"
-        required
-        className="g_input"
+        onChange={handleChange}
+        errorMessage={passwordError}
       />
-      {passwordError && <p className="g_invalid">{passwordError}</p>}
 
-      <label htmlFor="password" className="g_label mgt_1r">
-        비밀번호 확인
-      </label>
-      <input
+      <InputField
+        label="비밀번호 확인"
         type="password"
         value={repassword}
         name="repassword"
-        onChange={handleChange}
         placeholder="비밀번호를 입력하세요"
-        required
-        className="g_input"
+        onChange={handleChange}
+        errorMessage={repasswordError}
       />
-      {repasswordError && <p className="g_invalid">{repasswordError}</p>}
 
       <button type="button" onClick={handleLogin} className="g_btn mgt_1r">
         회원가입

@@ -1,21 +1,34 @@
+"use client"
+
 import React from "react";
 import LoginForm from "./LoginForm";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const LoginPage: React.FC = () => {
+  const router = useRouter();
+
+  const handleMovePage = (page: string) => {
+    router.push(page);
+  };
+
   return (
     <div className="g_main_content center">
-      <Image 
-          src="/img/logo.png" 
-          alt="로고" 
-          width={217}
-          height={36}
-          objectFit="contain"
-        />
+      <Image
+        src="/img/logo.png"
+        alt="로고"
+        width={217}
+        height={36}
+        objectFit="contain"
+      />
       <LoginForm />
 
       <div className="g_flex gap_10 mgb_1r">
-        <label className="g_label small g_pointer" htmlFor="signup">
+        <label
+          className="g_label small g_pointer"
+          htmlFor="signup"
+          onClick={() => handleMovePage("/join")}
+        >
           회원가입
         </label>/
         <label className="g_label small g_pointer" htmlFor="password-recovery">

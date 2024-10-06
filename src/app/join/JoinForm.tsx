@@ -1,7 +1,7 @@
 "use client"; // 클라이언트 컴포넌트로 설정
 
 import React, { useState } from "react";
-import { validateInput } from "@/utils/comn";
+import { validateField } from "@/utils/comn";
 import InputField from "@/components/InputField";
 
 const JoinForm: React.FC = () => {
@@ -18,31 +18,29 @@ const JoinForm: React.FC = () => {
 
     if (name === "nickname") {
       setNick(value);
+      // 닉네임 검증 로직 추가
     }
 
     if (name === "email") {
       setEmail(value);
-      const { isValid, errorMessage } = validateInput(name, value);
+      const { isValid, errorMessage } = validateField(name, value);
       setEmailError(isValid ? "" : errorMessage || "");
     }
 
     if (name === "password") {
       setPassword(value);
-      const { isValid, errorMessage } = validateInput(name, value);
+      const { isValid, errorMessage } = validateField(name, value);
       setPasswordError(isValid ? "" : errorMessage || "");
     }
 
     if (name === "repassword") {
       setRePassword(value);
-      setRePasswordError(
-        password != value ? "비밀번호가 일치하지 않습니다." : ""
-      );
+      const { isValid, errorMessage } = validateField(name, value, password);
+      setRePasswordError(isValid ? "" : errorMessage || "");
     }
   };
 
-  const handleDuplicateCheck = () => {
-    
-  }
+  const handleDuplicateCheck = () => {};
 
   const handleLogin = async () => {
     const loginData = {
@@ -66,7 +64,6 @@ const JoinForm: React.FC = () => {
         buttonLabel="중복확인"
         onButtonClick={handleDuplicateCheck}
       />
-      <p className="g_invalid">중복된 닉네임 입니다.</p>
 
       <InputField
         label="이메일"

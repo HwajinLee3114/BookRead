@@ -39,7 +39,7 @@ const InputField: React.FC<InputFieldProps> = ({
           className="g_input flex-grow" // flex-grow를 사용하여 공간을 차지하도록 설정
         />
         {buttonLabel && (
-          <button className="g_btn check" onClick={onButtonClick}>
+          <button className="g_btn check" onClick={() => onButtonClick}>
             {buttonLabel}
           </button>
         )}

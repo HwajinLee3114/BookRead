@@ -1,6 +1,9 @@
 import Link from 'next/link';
+import useAuthStore from '@/store/authStore';
 
 const Header: React.FC = () => {
+  const { isLoggedIn, userInfo, logout} = useAuthStore();
+
   return (
     <header className="header">
       <div className="logo">
@@ -13,9 +16,14 @@ const Header: React.FC = () => {
           <li><Link href="/contract">Contact</Link></li>
         </ul>
       </nav>
-      <div>
+      {isLoggedIn ? (
+        <div className='g_flex'>
+          <p>{userInfo?.nickname}님, 환영합니다!</p>
+          <button onClick={() => logout}>로그아웃</button>
+        </div>
+      ) : (
         <Link href="/login">Login</Link>
-      </div>
+      )}
     </header>
   );
 };

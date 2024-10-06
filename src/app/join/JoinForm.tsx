@@ -95,7 +95,7 @@ const JoinForm: React.FC = () => {
         errorMessage={repasswordError}
       />
 
-      <button type="button" onClick={handleLogin} className="g_btn mgt_1r">
+      <button type="button" onClick={() => handleLogin} className="g_btn mgt_1r">
         회원가입
       </button>
     </div>

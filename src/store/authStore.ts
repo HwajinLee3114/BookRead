@@ -15,7 +15,7 @@ interface AuthState {
 }
 
 // API 호출을 위한 더미 함수
-const mockApiLogin = async (email: string, password: string): Promise<UserInfo | null> => {
+const gf_login = async (email: string, password: string): Promise<UserInfo | null> => {
     return new Promise((resolve) => {
         setTimeout(() => {
             if (email === "test@naver.com" && password === "qwer1234!") {
@@ -55,7 +55,7 @@ const useAuthStore = create<AuthState>()(
             userInfo: null,
             errorMessage: '',
             login: async (email, password) => {
-                const user = await mockApiLogin(email, password);
+                const user = await gf_login(email, password);
                 if (user) {
                     set({ isLoggedIn: true, userInfo: user, errorMessage: '' });
                 } else {

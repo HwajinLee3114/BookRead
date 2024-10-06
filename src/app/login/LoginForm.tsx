@@ -36,7 +36,7 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="g_form_container mgtb_1r">
+    <div className="g_form_container mgt_1r">
       <label className="g_label" htmlFor="email">이메일</label>
       <input
         type="email"

@@ -16,7 +16,7 @@ const BottomMenu: React.FC = () => {
   ];
 
   return (
-    <div className="l_layout_bottom_menu">
+    <div className="g_layout_bottom_menu">
       {menuItems.map(({ href, label }) => (
         <Link key={href} href={href} className={currentPath === href ? 'active' : ''}>
           {label}

@@ -36,8 +36,8 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="form-container mgtb1rem">
-      <label htmlFor="email">이메일</label>
+    <div className="g_form_container mgtb_1r">
+      <label className="g_label" htmlFor="email">이메일</label>
       <input
         type="email"
         value={email}
@@ -45,13 +45,13 @@ const LoginForm: React.FC = () => {
         onChange={handleChange}
         placeholder="이메일을 입력하세요"
         required
-        className="input-field"
+        className="g_input"
       />
       {emailError && (
         <p className="g_invalid">유효한 이메일 주소를 입력해 주세요.</p>
       )}
 
-      <label htmlFor="password" className="mgt1rem">
+      <label htmlFor="password" className="g_label mgt_1r">
         비밀번호
       </label>
       <input
@@ -61,14 +61,14 @@ const LoginForm: React.FC = () => {
         onChange={handleChange}
         placeholder="비밀번호를 입력하세요"
         required
-        className="input-field"
+        className="g_input"
       />
       <p className="g_invalid">로그인 정보가 올바르지 않습니다.</p>
 
       <button
         type="button"
         onClick={handleLogin}
-        className="g_btn login-button mgt1rem"
+        className="g_btn login mgt_1r"
       >
         로그인
       </button>

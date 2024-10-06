@@ -15,7 +15,7 @@ const Layout: React.FC<LayoutProps> = ({ children, isLoggedIn }) => {
     <>
       {isLoggedIn ? <LoggedInHeader /> : <Header />}
 
-      <div className="l_layout_container">
+      <div className="g_main_content">
         <main>{children}</main>
       </div>
 

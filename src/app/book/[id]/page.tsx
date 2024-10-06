@@ -22,7 +22,7 @@ const BookPage: React.FC<{ params: { id: string } }> = async ({ params }) => {
   const bookData = exampleResponse;
 
   return (
-    <div className='hg100'>
+    <div className='g_main_content'>
       <h1>Book ID: {id}</h1>
       <h2>{bookData.title}</h2>
       <p>{bookData.description}</p>

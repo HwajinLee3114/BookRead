@@ -1,10 +1,10 @@
+/* ====== 공통 레이아웃 ====== */
 /* 헤더 */
 header {
     background-color: bisque;
     display: flex;
     gap: 1rem;
     padding: 1rem;
-    margin-bottom: 1rem;
 }
 
 header ul {
@@ -12,15 +12,8 @@ header ul {
     gap: 1rem;
 }
 
-/* 메인 */
-.l_layout_container {
-    display: flex;
-    height: 100%;
-    padding: 0.5rem 1rem;
-}
-
 /* 하단 메뉴 */
-.l_layout_bottom_menu {
+.g_layout_bottom_menu {
     display: flex;
     position: sticky;
     padding: 1rem 0;
@@ -29,18 +22,18 @@ header ul {
     justify-content: space-around;
 }
 
-.l_layout_bottom_menu a {
+.g_layout_bottom_menu a {
     text-decoration: none;
     color: black;
     padding: 10px;
     transition: color 0.3s ease;
 }
 
-.l_layout_bottom_menu a:hover {
+.g_layout_bottom_menu a:hover {
     color: gray;
 }
 
-.l_layout_bottom_menu a.active {
+.g_layout_bottom_menu a.active {
     font-weight: bold;
     color: #0BBBA6;
     border-bottom: 2px solid #0BBBA6;

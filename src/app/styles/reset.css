@@ -39,6 +39,10 @@ html, body {
 
 ol, ul {
   list-style: none;
+  /* 1006 ADD */
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 
 a {

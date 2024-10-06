@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+* {
+    --g_input_min_height: 1.8rem;
+    --g_main_color: #0BBBA6;
+}
+
 input::placeholder {
     color: #B3B3B3;
     opacity: 1;
@@ -65,15 +70,24 @@ input::placeholder {
     }
 }
 
+.g_input_wrap {
+    display: inline-flex;
+    align-items: baseline;
+    position: relative;
+    box-sizing: border-box;
+    gap: 1rem;
+}
+
 .g_input {
     padding: 0.75rem;
     margin-top: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 8px;
+    flex: 1;
 }
 
 .g_invalid {
-    margin-top: 0.5rem;
+    margin: .5rem;
     color: #EC221F;
     font-size: small;
 }
@@ -129,10 +143,11 @@ input::placeholder {
     padding: 0.5rem;
     border: none;
     border-radius: 4px;
-    background-color: #a2bdd9;
+    background-color: #444444;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
+    min-height: 2.5rem;
 
     &:hover {
         filter: brightness(1.10);
@@ -167,11 +182,6 @@ input::placeholder {
         &.size_page { font-size: 1rem;      padding: 6px 4px;    min-height: initial;  }
     */
 
-    &.login {
-        background-color: #444444;
-        height: 2.5rem;
-    }
-
     &.save {
         background-color: #33e6a4;
     }
@@ -186,6 +196,9 @@ input::placeholder {
     }
     &.close {
         background-color: #c0c0c0;
+    }
+    &.check {
+        background-color: var(--g_main_color);
     }
 
     &[disabled] {

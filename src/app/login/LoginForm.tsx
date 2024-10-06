@@ -68,7 +68,7 @@ const LoginForm: React.FC = () => {
       <button
         type="button"
         onClick={handleLogin}
-        className="g_btn login mgt_1r"
+        className="g_btn mgt_1r"
       >
         로그인
       </button>

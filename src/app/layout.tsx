@@ -11,7 +11,7 @@ import { usePathname } from 'next/navigation'; // 현재 경로 가져오기
 
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathname = usePathname();
-  const excludedPaths = ['/login'];
+  const excludedPaths = ['/login', '/join'];
 
   const isExcludedPage = excludedPaths.includes(pathname);
 

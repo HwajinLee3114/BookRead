@@ -32,11 +32,13 @@ const LoginForm: React.FC = () => {
 
   const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    await login(email, password);
-    const isLoggedIn = useAuthStore.getState().isLoggedIn;
-    if (isLoggedIn) {
-      router.push('/'); // 홈으로 이동
+
+    if(!email || !password) {
+      alert("로그인 정보를 입력해 주세요.");
+      return false;
     }
+
+    await login(email, password);
   };
 
   useEffect(() => {

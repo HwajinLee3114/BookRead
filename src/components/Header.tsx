@@ -1,11 +1,10 @@
 import Link from "next/link";
 import useAuthStore from "@/store/authStore";
-import { useRouter } from "next/navigation"; // useRouter를 가져옵니다.
+import { useRouter } from "next/navigation";
 
 const Header: React.FC = () => {
   const { isLoggedIn, userInfo, logout } = useAuthStore();
-  const router = useRouter(); // router를 초기화합니다.
-
+  const router = useRouter();
   const handleLogout = () => {
     logout();
     localStorage.removeItem("loginUserInfo");
@@ -34,8 +33,7 @@ const Header: React.FC = () => {
       {isLoggedIn ? (
         <div className="g_flex">
           <p>{userInfo?.nickname}님, 환영합니다!</p>
-          <button onClick={handleLogout}>로그아웃</button>{" "}
-          {/* 클릭 시 handleLogout 호출 */}
+          <button onClick={handleLogout}>로그아웃</button>
         </div>
       ) : (
         <Link href="/login">Login</Link>

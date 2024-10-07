@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import LoginForm from "./LoginForm";
@@ -11,6 +11,10 @@ const LoginPage: React.FC = () => {
   const handleMovePage = (page: string) => {
     router.push(page);
   };
+
+  const handleSnsLogin = (loginType: string) => {
+    console.log(loginType)
+  }
 
   return (
     <div className="g_main_content center">
@@ -30,16 +34,46 @@ const LoginPage: React.FC = () => {
           onClick={() => handleMovePage("/join")}
         >
           회원가입
-        </label>/
+        </label>
+        /
         <label className="g_label small g_pointer" htmlFor="password-recovery">
           비밀번호 찾기
         </label>
       </div>
 
       <div className="g_flex gap_10">
-        <button className="g_btn">카카오 로그인</button>
-        <button className="g_btn">네이버 로그인</button>
-        <button className="g_btn">애플 로그인</button>
+        <Image
+          src="/img/kakao.png"
+          alt="카카오 로그인"
+          width={40}
+          height={40}
+          objectFit="contain"
+          onClick={() => handleSnsLogin('kakao')}
+        />
+        <Image
+          src="/img/naver.png"
+          alt="네이버 로그인"
+          width={40}
+          height={40}
+          objectFit="contain"
+          onClick={() => handleSnsLogin('naver')}
+        />
+        <Image
+          src="/img/google.png"
+          alt="구글 로그인"
+          width={40}
+          height={40}
+          objectFit="contain"
+          onClick={() => handleSnsLogin('google')}
+        />
+        <Image
+          src="/img/ios.png"
+          alt="애플 로그인"
+          width={40}
+          height={40}
+          objectFit="contain"
+          onClick={() => handleSnsLogin('ios')}
+        />
       </div>
     </div>
   );

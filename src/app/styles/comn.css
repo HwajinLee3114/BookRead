@@ -1,0 +1,217 @@
+@charset "UTF-8";
+
+* {
+    --g_input_min_height: 1.8rem;
+    --g_main_color: #0BBBA6;
+}
+
+input::placeholder {
+    color: #B3B3B3;
+    opacity: 1;
+}
+
+.hg_100 {
+    height: 100%;
+}
+
+.wd_70 {
+    width: 70%;
+}
+
+.gap_10 {
+    gap: 10px;
+}
+
+.pd_1r {
+    padding: 1rem;
+}
+
+.mgt_1r {
+    margin-top: 1rem;
+}
+
+.mgb_1r {
+    margin-bottom: 1rem;
+}
+
+.mgtb_1r {
+    margin: 1rem 0;
+}
+
+.g_pointer {
+    cursor: pointer;
+}
+
+.g_flex {
+    display: flex;
+    align-items: center;
+}
+
+.g_label {
+    padding: 0 0.5rem;
+    min-height: var(--g_input_min_height);
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0.5rem;
+
+    &.center {
+        text-align: center;
+        justify-content: center;
+    }
+
+    &.right {
+        text-align: right;
+        justify-content: flex-end;
+    }
+
+    &.small {
+        font-size: .9rem
+    }
+}
+
+.g_input_wrap {
+    display: inline-flex;
+    align-items: baseline;
+    position: relative;
+    box-sizing: border-box;
+    gap: .5rem;
+    margin-bottom: .5rem;
+}
+
+.g_input {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    flex: 1;
+}
+
+.g_invalid {
+    margin: .5rem;
+    color: #EC221F;
+    font-size: small;
+}
+
+.g_scroll_bar::-webkit-scrollbar {
+    width: 8px; /* 스크롤바의 너비 */
+    height: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: #c4c4c4 transparent;
+  }
+  
+  .g_scroll_bar::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: #DEE1E4; /* 스크롤바의 색상 */
+    border-radius: 10px;
+    transition: all 0.5s;
+  }
+  
+  .g_scroll_bar::-webkit-scrollbar-thumb:hover {
+    background-color: #1F1F1F;
+  }
+  
+  .g_scroll_bar::-webkit-scrollbar-track {
+    background-color: transparent; /*스크롤바 뒷 배경 색상*/
+  }
+
+  .g_main_content {
+    flex: 1;
+    height: 100vh;
+    overflow: auto;
+    padding: 1rem;
+    box-sizing: border-box;
+    background-color: #F6F6F6;
+
+    &.center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+  .g_form_container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    padding: 1rem;
+  }
+
+/* ====== 버튼 ====== */
+.g_btn {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #444444;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    min-height: 2.5rem;
+
+    &:hover {
+        filter: brightness(1.10);
+        outline: 3px solid #ccc;
+    }
+
+    &:active {
+        transform: scale(.95);
+    }
+
+    &[selected] {
+        font-weight: bold;
+        filter: brightness(1.05);
+        box-shadow: inset #0079ad 0 0px 0px 2px;
+    }
+
+    /* TODO 사이즈 추가하기
+        &.size_min { min-width: 10em; }
+
+        &.size_fixed {
+            width: 10em;
+            max-width: 10em;
+            height: 2.5em;
+            max-height: 2.5em;
+        }
+
+        &.size_1    { font-size: .9rem;     padding: 3px 10px;   min-height: initial; }
+        &.size_2    { font-size: .9rem;     padding: 7px 15px;   min-height: initial; }
+        &.size_3    { }
+        &.size_4    { font-size: 1.2rem;    padding: 12px 23px;  min-height: initial;  }
+        &.size_5    { font-size: 1.5rem;    padding: 15px 30px;  min-height: initial;  }
+        &.size_page { font-size: 1rem;      padding: 6px 4px;    min-height: initial;  }
+    */
+
+    &.save {
+        background-color: #33e6a4;
+    }
+    &.add {
+        background-color: #338ae6;
+    }
+    &.modify {
+        background-color: #e68733;
+    }
+    &.delete {
+        background-color: #e63c33;
+    }
+    &.close {
+        background-color: #c0c0c0;
+    }
+    &.check {
+        background-color: var(--g_main_color);
+    }
+
+    &[disabled] {
+        background-color: #dedede;
+        border-color: #dedede;
+        color: #a0a0a0;
+        cursor: default;
+
+        &:hover {
+            filter: none;
+            box-shadow: none;
+            transform: inherit;
+            outline: none;
+        }
+    }
+}

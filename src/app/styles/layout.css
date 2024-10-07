@@ -1,0 +1,46 @@
+/* ====== 공통 레이아웃 ====== */
+/* 헤더 */
+header {
+    background-color: bisque;
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+header ul {
+    display: flex;
+    gap: 1rem;
+}
+
+/* 하단 메뉴 */
+.g_layout_bottom_menu {
+    display: flex;
+    position: sticky;
+    padding: 1rem 0;
+    bottom: 0;
+    background-color: #efefef;
+    justify-content: space-around;
+}
+
+.g_layout_bottom_menu a {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
+
+.g_layout_bottom_menu a:hover {
+    color: gray;
+}
+
+.g_layout_bottom_menu a.active {
+    font-weight: bold;
+    color: #0BBBA6;
+    border-bottom: 2px solid #0BBBA6;
+}
+
+/* 푸터 */
+footer {
+    background-color: khaki;
+    padding: 1rem;
+}

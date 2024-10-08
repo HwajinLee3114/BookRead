@@ -66,7 +66,7 @@ const useAuthStore = create<AuthState>()(
         }),
         {
             name: 'loginUserInfo', // 저장할 키
-            storage: createJSONStorage(() => localStorage), // JSON 직렬화를 위한 설정
+            storage: createJSONStorage(() => localStorage),
         }
     )
 );

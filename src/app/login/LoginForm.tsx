@@ -1,4 +1,4 @@
-"use client"; // 클라이언트 컴포넌트로 설정
+"use client";
 
 import React, { useEffect, useState } from "react";
 import { validateField } from "@/utils/comn";
@@ -30,18 +30,33 @@ const LoginForm: React.FC = () => {
     }
   };
 
+  const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+
+      if (!email || !password) {
+        alert("로그인 정보를 입력해 주세요.");
+        return false;
+      }
+
+      await login(email, password);
+    }
+  };
+
   const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    await login(email, password);
-    const isLoggedIn = useAuthStore.getState().isLoggedIn;
-    if (isLoggedIn) {
-      router.push('/'); // 홈으로 이동
+
+    if (!email || !password) {
+      alert("로그인 정보를 입력해 주세요.");
+      return false;
     }
+
+    await login(email, password);
   };
 
   useEffect(() => {
     if (isLoggedIn) {
-      router.push('/'); // 홈으로 이동
+      router.push("/"); // 홈으로 이동
     }
   }, [isLoggedIn, router]);
 
@@ -64,6 +79,7 @@ const LoginForm: React.FC = () => {
         name="password"
         placeholder="비밀번호를 입력하세요"
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
       />
       {errorMessage && <p className="g_invalid">{errorMessage}</p>}
 

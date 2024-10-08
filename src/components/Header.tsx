@@ -4,14 +4,14 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 const Header: React.FC = () => {
-  const { isLoggedIn, userInfo, logout } = useAuthStore();
+  const { isLoggedIn, userInfo } = useAuthStore();
   const router = useRouter();
-  const handleLogout = () => {
-    logout();
-    localStorage.removeItem("loginUserInfo");
-    alert("로그아웃되었습니다");
-    router.push("/login");
-  };
+  // const handleLogout = () => {
+  //   logout();
+  //   localStorage.removeItem("loginUserInfo");
+  //   alert("로그아웃되었습니다");
+  //   router.push("/login");
+  // };
 
   return (
     <header className="flex_js_between">

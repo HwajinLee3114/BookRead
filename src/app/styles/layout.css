@@ -1,7 +1,7 @@
 /* ====== 공통 레이아웃 ====== */
 /* 헤더 */
 header {
-    background-color: bisque;
+    background-color: #efefef;
     display: flex;
     gap: 1rem;
     padding: 1rem;
@@ -41,6 +41,6 @@ header ul {
 
 /* 푸터 */
 footer {
-    background-color: khaki;
+    background-color: #f6f6f6;
     padding: 1rem;
 }

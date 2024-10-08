@@ -1,5 +1,5 @@
 // src/app/layout.tsx
-"use client"; // 클라이언트 컴포넌트로 설정
+"use client";
 
 import React from 'react';
 import './styles/reset.css';

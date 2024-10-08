@@ -18,6 +18,10 @@ input::placeholder {
     width: 70%;
 }
 
+.gap_5 {
+    gap: 5px;
+}
+
 .gap_10 {
     gap: 10px;
 }
@@ -43,6 +47,19 @@ input::placeholder {
 }
 
 .g_flex {
+    display: flex;
+    align-items: center;
+}
+
+.flex_js_between {
+    justify-content: space-between;
+}
+  
+.flex_js_center {
+    justify-content: center;
+}
+
+.ver_align {
     display: flex;
     align-items: center;
 }
@@ -136,6 +153,10 @@ input::placeholder {
     width: 100%;
     max-width: 300px;
     padding: 1rem;
+  }
+
+  .g_round {
+    border-radius: 50%;
   }
 
 /* ====== 버튼 ====== */

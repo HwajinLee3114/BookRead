@@ -21,6 +21,10 @@ const HomePage = () => {
     }
   }, [isLoggedIn, router]);
 
+  if (!isLoggedIn) {
+    return null;
+  }
+
   return (
     <Layout>
       <div>sdfdf</div>

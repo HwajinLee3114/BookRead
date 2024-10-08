@@ -8,12 +8,14 @@ import './styles/layout.css';
 
 import BottomMenu from '@/components/BottomMenu';
 import { usePathname } from 'next/navigation'; // 현재 경로 가져오기
+import useAuthStore from '@/store/authStore';
 
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathname = usePathname();
   const excludedPaths = ['/login', '/join'];
 
   const isExcludedPage = excludedPaths.includes(pathname);
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   return (
     <html lang="ko">
@@ -23,7 +25,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </head>
       <body>
         {children}
-        {!isExcludedPage && <BottomMenu />}
+        {!isExcludedPage && isLoggedIn && <BottomMenu />}
       </body>
     </html>
   );

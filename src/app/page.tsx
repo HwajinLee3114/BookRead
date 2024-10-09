@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 // import { getSession } from "@/lib/auth"; // getSession을 import
 
 const HomePage = () => {
-  const userInfo = useAuthStore((state) => state.userInfo);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const router = useRouter();
 
@@ -28,8 +27,6 @@ const HomePage = () => {
   return (
     <Layout>
       <div>sdfdf</div>
-      <h1>{userInfo?.nickname} 님 어서오세요</h1>
-      <p>{isLoggedIn ? "로그인 되었습니다." : "로그인 해주세요"}</p>
     </Layout>
   );
 };

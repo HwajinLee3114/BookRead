@@ -10,14 +10,17 @@ const LoginForm: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
-  const errorMessage = useAuthStore((state) => state.errorMessage);
+  const [logining, setLogining] = useState(false);
 
-  const login = useAuthStore((state) => state.login);
+  const errorMessage = useAuthStore((state) => state.errorMessage);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const login = useAuthStore((state) => state.login);
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
+    setLogining(false);
 
     if (name === "email") {
       setEmail(value);
@@ -51,6 +54,8 @@ const LoginForm: React.FC = () => {
       return false;
     }
 
+    setLogining(true);
+
     await login(email, password);
   };
 
@@ -81,7 +86,7 @@ const LoginForm: React.FC = () => {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      {errorMessage && <p className="g_invalid">{errorMessage}</p>}
+      {errorMessage && logining && <p className="g_invalid">{errorMessage}</p>}
 
       <button type="button" className="g_btn mgt_1r" onClick={handleLogin}>
         로그인

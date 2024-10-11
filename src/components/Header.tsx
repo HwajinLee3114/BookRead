@@ -6,12 +6,14 @@ import Image from "next/image";
 const Header: React.FC = () => {
   const { isLoggedIn, userInfo } = useAuthStore();
   const router = useRouter();
-  // const handleLogout = () => {
-  //   logout();
-  //   localStorage.removeItem("loginUserInfo");
-  //   alert("로그아웃되었습니다");
-  //   router.push("/login");
-  // };
+  const logout = useAuthStore((state) => state.logout);
+
+  const handleLogout = () => {
+    logout();
+    localStorage.removeItem("loginUserInfo");
+    alert("로그아웃되었습니다");
+    router.push("/login");
+  };
 
   return (
     <header className="flex_js_between">
@@ -48,7 +50,7 @@ const Header: React.FC = () => {
             layout="cover"
             onClick={() => router.push('/book')}
           />
-          {/* <button className="g_btn" onClick={handleLogout}>로그아웃</button> */}
+          <button className="g_btn" onClick={handleLogout}>로그아웃</button>
         </div>
       ) : (
         <Link href="/login">Login</Link>

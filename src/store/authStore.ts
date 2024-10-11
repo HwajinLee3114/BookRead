@@ -53,7 +53,14 @@ const useAuthStore = create<AuthState>()(
                     set({ isLoggedIn: false, userInfo: null, errorMessage: '로그인 정보가 올바르지 않습니다.' });
                 }
             },
-            logout: () => set({ isLoggedIn: false, userInfo: null, errorMessage: '' }),
+            logout: async () => {
+                const { error } = await supabase.auth.signOut();
+                if (error) {
+                    console.error('로그아웃 중 오류가 발생했습니다:', error.message);
+                    return null;
+                }
+                set({ isLoggedIn: false, userInfo: null, errorMessage: '' })
+            },
         }),
         {
             name: 'loginUserInfo', // 저장할 키

@@ -33,22 +33,21 @@ const LoginForm: React.FC = () => {
     }
   };
 
-  const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
 
-      if (!email || !password) {
-        alert("로그인 정보를 입력해 주세요.");
-        return false;
-      }
-
-      await login(email, password);
+      lf_login();
     }
   };
 
-  const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
+    lf_login();
+  };
+
+  const lf_login = async () => {
     if (!email || !password) {
       alert("로그인 정보를 입력해 주세요.");
       return false;
@@ -57,13 +56,19 @@ const LoginForm: React.FC = () => {
     setLogining(true);
 
     await login(email, password);
+
+    if (isLoggedIn) {
+      setLogining(false);
+      alert("로그인에 성공하였습니다.");
+      router.push("/");
+    }
   };
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      router.push("/"); // 홈으로 이동
-    }
-  }, [isLoggedIn, router]);
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     router.push("/"); // 홈으로 이동
+  //   }
+  // }, [isLoggedIn, router]);
 
   return (
     <div className="g_form_container mgt_1r">

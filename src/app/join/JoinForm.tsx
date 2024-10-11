@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { validateField } from "@/utils/comn";
 import InputField from "@/components/InputField";
 import { supabase } from "@/utils/supabase";
+import { useRouter } from "next/navigation";
 
 const JoinForm: React.FC = () => {
   const [nickname, setNickname] = useState<string>("");
@@ -16,6 +17,8 @@ const JoinForm: React.FC = () => {
   const [emailError, setEmailError] = useState<string>("");
   const [passwordError, setPasswordError] = useState<string>("");
   const [repasswordError, setRePasswordError] = useState<string>("");
+
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -65,13 +68,38 @@ const JoinForm: React.FC = () => {
   };
 
   const handleJoin = async () => {
-    const joinData = {
+    console.info('join data',{
       email,
       password,
-      nickname,
-    };
+      options: {
+        data: {
+          nickname: nickname,
+          sns_type: null,
+        },
+      },
+    })
+    const { data, error: joinError } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          nickname: nickname,
+          sns_type: null,
+        },
+      },
+    });
 
-    console.log("회원가입 시도:", JSON.stringify(joinData));
+    if (joinError) {
+      console.error("회원가입 중 오류가 발생했습니다.", joinError.message);
+      return;
+    }
+
+    const user = data.user;
+    if (user) {
+      console.info("회원가입 완료", user);
+      alert('회원가입이 완료되었습니다.');
+      router.push('/login');
+    }
   };
 
   return (
@@ -120,7 +148,7 @@ const JoinForm: React.FC = () => {
         errorMessage={repasswordError}
       />
 
-      <button type="button" onClick={() => handleJoin} className="g_btn mgt_1r">
+      <button type="button" onClick={handleJoin} className="g_btn mgt_1r">
         회원가입
       </button>
     </div>

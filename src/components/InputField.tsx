@@ -45,7 +45,7 @@ const InputField: React.FC<InputFieldProps> = ({
           disabled={disabled}
         />
         {buttonLabel && (
-          <button className="g_btn check g_pointer" onClick={onButtonClick}>
+          <button className="g_btn check g_pointer" onClick={onButtonClick} disabled={disabled}>
             {buttonLabel}
           </button>
         )}

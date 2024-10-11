@@ -11,6 +11,7 @@ type InputFieldProps = {
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   buttonLabel?: string; // 버튼 텍스트
   onButtonClick?: () => void; // 버튼 클릭 이벤트
+  disabled?: boolean;
 };
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -24,6 +25,7 @@ const InputField: React.FC<InputFieldProps> = ({
   onKeyDown,
   buttonLabel,
   onButtonClick,
+  disabled,
 }) => {
   return (
     <>
@@ -40,9 +42,10 @@ const InputField: React.FC<InputFieldProps> = ({
           placeholder={placeholder}
           required
           className="g_input flex-grow" // flex-grow를 사용하여 공간을 차지하도록 설정
+          disabled={disabled}
         />
         {buttonLabel && (
-          <button className="g_btn check" onClick={onButtonClick}>
+          <button className="g_btn check g_pointer" onClick={onButtonClick}>
             {buttonLabel}
           </button>
         )}

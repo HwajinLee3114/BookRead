@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { validateField } from "@/utils/comn";
 import InputField from "@/components/InputField";
 import useAuthStore from "@/store/authStore";

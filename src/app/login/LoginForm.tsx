@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { validateField } from "@/utils/comn";
 import InputField from "@/components/InputField";
 import useAuthStore from "@/store/authStore";
@@ -10,14 +10,17 @@ const LoginForm: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
-  const errorMessage = useAuthStore((state) => state.errorMessage);
+  const [logining, setLogining] = useState(false);
 
-  const login = useAuthStore((state) => state.login);
+  const errorMessage = useAuthStore((state) => state.errorMessage);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const login = useAuthStore((state) => state.login);
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
+    setLogining(false);
 
     if (name === "email") {
       setEmail(value);
@@ -30,35 +33,42 @@ const LoginForm: React.FC = () => {
     }
   };
 
-  const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
 
-      if (!email || !password) {
-        alert("로그인 정보를 입력해 주세요.");
-        return false;
-      }
-
-      await login(email, password);
+      lf_login();
     }
   };
 
-  const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
+    lf_login();
+  };
+
+  const lf_login = async () => {
     if (!email || !password) {
       alert("로그인 정보를 입력해 주세요.");
       return false;
     }
 
+    setLogining(true);
+
     await login(email, password);
+
+    if (isLoggedIn) {
+      setLogining(false);
+      alert("로그인에 성공하였습니다.");
+      router.push("/");
+    }
   };
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      router.push("/"); // 홈으로 이동
-    }
-  }, [isLoggedIn, router]);
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     router.push("/"); // 홈으로 이동
+  //   }
+  // }, [isLoggedIn, router]);
 
   return (
     <div className="g_form_container mgt_1r">
@@ -81,7 +91,7 @@ const LoginForm: React.FC = () => {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      {errorMessage && <p className="g_invalid">{errorMessage}</p>}
+      {errorMessage && logining && <p className="g_invalid">{errorMessage}</p>}
 
       <button type="button" className="g_btn mgt_1r" onClick={handleLogin}>
         로그인

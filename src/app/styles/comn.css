@@ -103,9 +103,22 @@ input::placeholder {
     flex: 1;
 }
 
+.g_input:disabled {
+    background-color: #f0f0f0;
+    border-color: #aaa;
+    color: #888;
+    cursor: not-allowed;
+  }
+
 .g_invalid {
     margin: .5rem;
     color: #EC221F;
+    font-size: small;
+}
+
+.g_valid {
+    margin: .5rem;
+    color: #1f80ec;
     font-size: small;
 }
 

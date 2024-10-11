@@ -1,9 +1,10 @@
+import { supabase } from "@/utils/supabase";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 interface UserInfo {
     email: string;
-    nickname: string;
+    nickname?: string;
 }
 
 interface AuthState {
@@ -14,38 +15,28 @@ interface AuthState {
     logout: () => void;
 }
 
-// API 호출을 위한 더미 함수
-const gf_login = async (email: string, password: string): Promise<UserInfo | null> => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            if (email === "test@naver.com" && password === "qwer1234!") {
-                resolve({ email, nickname: "hjlee" }); // 성공적인 로그인
-            } else {
-                resolve(null); // 로그인 실패
-            }
-        }, 1000);
+const gf_login = async (email: string, password: string) => {
 
-        /*
-        try {
-          const response = await axios.post('/api/login', {
-            email,
-            password,
-          });
-          
-          if (response.data.success) {
-            // API가 성공적으로 로그인한 경우
-            const { email, nickname } = response.data.user;
-            resolve({ email, nickname });
-          } else {
-            // 로그인 실패한 경우
-            resolve(null);
-          }
-        } catch (error) {
-          console.error("로그인 중 오류 발생:", error);
-          resolve(null);
-        }
-        */
+    const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
     });
+
+    if (error) {
+        console.error('로그인 중 오류가 발생했습니다:', error.message);
+        return null;
+    }
+
+    if (data.user) {
+        const userEmail = data.user.email;
+
+        return {
+            email: userEmail as string,
+            nickname: data.user.user_metadata?.nickname || undefined,
+        };
+    }
+
+    return null
 };
 
 const useAuthStore = create<AuthState>()(
@@ -62,7 +53,14 @@ const useAuthStore = create<AuthState>()(
                     set({ isLoggedIn: false, userInfo: null, errorMessage: '로그인 정보가 올바르지 않습니다.' });
                 }
             },
-            logout: () => set({ isLoggedIn: false, userInfo: null, errorMessage: '' }),
+            logout: async () => {
+                const { error } = await supabase.auth.signOut();
+                if (error) {
+                    console.error('로그아웃 중 오류가 발생했습니다:', error.message);
+                    return null;
+                }
+                set({ isLoggedIn: false, userInfo: null, errorMessage: '' })
+            },
         }),
         {
             name: 'loginUserInfo', // 저장할 키

@@ -1,5 +1,6 @@
+"use client";
+
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import useAuthStore from "@/store/authStore";
@@ -29,13 +30,7 @@ const Header: React.FC = () => {
     <header className="flex_js_between">
       <div className="logo ver_align">
         <Link href="/">
-          <Image
-            src="/img/logo.png"
-            alt="로고"
-            width={85}
-            height={15}
-            style={{ objectFit: "contain" }}
-          />
+          <img src="/img/logo.png" alt="로고" className="h-5 object-contain" />
         </Link>
       </div>
       {/* <nav className="nav ver_align">
@@ -51,15 +46,22 @@ const Header: React.FC = () => {
       {isLoggedIn ? (
         <div className="g_flex gap_10">
           <p>{userInfo?.nickname}</p>
-          <Image
+          <img
             src="/img/sample.jpg"
-            alt="로고"
-            width={40}
-            height={40}
-            style={{ borderRadius: "50%" }}
+            alt="profile"
+            className="w-9 h-9 rounded-full object-cover"
+            onClick={() => router.push("/book")}
+          />
+
+          {/* <Image
+            src="/img/sample.jpg"
+            alt="profile"
+            width={28}
+            height={28}
+            className="rounded-full"
             onClick={() => router.push("/book")}
             priority
-          />
+          /> */}
           <button className="g_btn" onClick={() => lf_logout()}>
             로그아웃
           </button>

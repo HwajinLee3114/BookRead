@@ -23,7 +23,8 @@ const LoginPage: React.FC = () => {
         alt="로고"
         width={217}
         height={36}
-        objectFit="contain"
+        style={{ objectFit: 'contain' }}
+        priority
       />
       <LoginForm />
 
@@ -47,7 +48,7 @@ const LoginPage: React.FC = () => {
           alt="카카오 로그인"
           width={40}
           height={40}
-          objectFit="contain"
+          style={{ objectFit: 'contain' }}
           onClick={() => handleSnsLogin('kakao')}
         />
         <Image
@@ -55,7 +56,7 @@ const LoginPage: React.FC = () => {
           alt="네이버 로그인"
           width={40}
           height={40}
-          objectFit="contain"
+          style={{ objectFit: 'contain' }}
           onClick={() => handleSnsLogin('naver')}
         />
         <Image
@@ -63,7 +64,7 @@ const LoginPage: React.FC = () => {
           alt="구글 로그인"
           width={40}
           height={40}
-          objectFit="contain"
+          style={{ objectFit: 'contain' }}
           onClick={() => handleSnsLogin('google')}
         />
         <Image
@@ -71,7 +72,7 @@ const LoginPage: React.FC = () => {
           alt="애플 로그인"
           width={40}
           height={40}
-          objectFit="contain"
+          style={{ objectFit: 'contain' }}
           onClick={() => handleSnsLogin('ios')}
         />
       </div>

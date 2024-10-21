@@ -33,7 +33,7 @@ const Header: React.FC = () => {
             alt="로고"
             width={85}
             height={15}
-            objectFit="contain"
+            style={{ objectFit: 'contain' }}
           />
         </Link>
       </div>
@@ -56,8 +56,8 @@ const Header: React.FC = () => {
             width={40}
             height={40}
             style={{ borderRadius: "50%" }}
-            layout="cover"
             onClick={() => router.push("/book")}
+            priority
           />
           <button className="g_btn" onClick={() => lf_logout()}>
             로그아웃

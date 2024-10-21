@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+
+import useAuthStore from "@/store/authStore";
 import { validateField } from "@/utils/comn";
 import InputField from "@/components/InputField";
-import useAuthStore from "@/store/authStore";
-import { useRouter } from "next/navigation";
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState<string>("");

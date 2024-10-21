@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import { usePathname, useRouter } from "next/navigation"; // 현재 경로 가져오기
 import "./styles/reset.css";
 import "./styles/comn.css";
 import "./styles/layout.css";
 
 import BottomMenu from "@/components/BottomMenu";
-import { usePathname, useRouter } from "next/navigation"; // 현재 경로 가져오기
 import useAuthStore from "@/store/authStore";
 
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {

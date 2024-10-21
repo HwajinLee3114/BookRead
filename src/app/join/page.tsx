@@ -1,4 +1,5 @@
 import React from "react";
+
 import JoinForm from "./JoinForm";
 
 const JoinPage: React.FC = () => {

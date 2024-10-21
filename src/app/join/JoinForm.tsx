@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+
 import { validateField } from "@/utils/comn";
 import InputField from "@/components/InputField";
 import { supabase } from "@/utils/supabase";
-import { useRouter } from "next/navigation";
 
 const JoinForm: React.FC = () => {
   const [nickname, setNickname] = useState<string>("");

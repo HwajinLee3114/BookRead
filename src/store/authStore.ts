@@ -1,6 +1,7 @@
-import { supabase } from "@/utils/supabase";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
+
+import { supabase } from "@/utils/supabase";
 
 interface UserInfo {
   email?: string;

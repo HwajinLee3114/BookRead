@@ -1,7 +1,8 @@
 import Link from "next/link";
-import useAuthStore from "@/store/authStore";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
+import useAuthStore from "@/store/authStore";
 // import { useEffect } from "react";
 
 const Header: React.FC = () => {

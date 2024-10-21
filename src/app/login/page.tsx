@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
-import LoginForm from "./LoginForm";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+
+import LoginForm from "./LoginForm";
 
 const LoginPage: React.FC = () => {
   const router = useRouter();

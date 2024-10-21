@@ -1,3 +1,40 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "rules": {
+    "no-console": "warn", // console.log 사용 경고
+    "no-unused-vars": "warn", // 사용하지 않는 변수 경고
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { "argsIgnorePattern": "^_" }
+    ], // 사용하지 않는 변수 경고 (언더스코어로 시작하는 변수는 제외)
+    "@typescript-eslint/explicit-function-return-type": "off", // 함수의 반환 타입 명시 강제 해제
+    "@typescript-eslint/no-explicit-any": "warn", // 'any' 사용 경고
+    "react/prop-types": "off", // TypeScript 사용 시 prop-types 비활성화
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "sibling",
+          "parent",
+          "index"
+        ],
+        "newlines-between": "always"
+      }
+    ], // import 순서 정리
+    "jsx-quotes": ["error", "prefer-double"] // JSX에서 속성에 더블 쿼트 사용
+  },
+  "settings": {
+    "react": {
+      "version": "detect" // 사용 중인 React 버전 자동 감지
+    }
+  }
 }

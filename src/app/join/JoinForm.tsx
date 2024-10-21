@@ -68,7 +68,7 @@ const JoinForm: React.FC = () => {
   };
 
   const handleJoin = async () => {
-    console.info('join data',{
+    console.info("join data", {
       email,
       password,
       options: {
@@ -77,7 +77,7 @@ const JoinForm: React.FC = () => {
           sns_type: null,
         },
       },
-    })
+    });
     const { data, error: joinError } = await supabase.auth.signUp({
       email,
       password,
@@ -97,8 +97,8 @@ const JoinForm: React.FC = () => {
     const user = data.user;
     if (user) {
       console.info("회원가입 완료", user);
-      alert('회원가입이 완료되었습니다.');
-      router.push('/login');
+      alert("회원가입이 완료되었습니다.");
+      router.push("/login");
     }
   };
 

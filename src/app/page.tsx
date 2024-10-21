@@ -6,7 +6,7 @@ import useAuthStore from "@/store/authStore";
 
 const HomePage = () => {
   const { isLoggedIn } = useAuthStore();
-  
+
   if (!isLoggedIn) {
     return null;
   }

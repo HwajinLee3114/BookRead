@@ -33,7 +33,7 @@ const Header: React.FC = () => {
             alt="로고"
             width={85}
             height={15}
-            style={{ objectFit: 'contain' }}
+            style={{ objectFit: "contain" }}
           />
         </Link>
       </div>

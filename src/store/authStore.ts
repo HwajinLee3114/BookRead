@@ -3,7 +3,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 interface UserInfo {
-    email: string;
+    email?: string;
     nickname?: string;
 }
 
@@ -16,7 +16,6 @@ interface AuthState {
 }
 
 const gf_login = async (email: string, password: string) => {
-
     const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -31,12 +30,12 @@ const gf_login = async (email: string, password: string) => {
         const userEmail = data.user.email;
 
         return {
-            email: userEmail as string,
+            email: userEmail,
             nickname: data.user.user_metadata?.nickname || undefined,
         };
     }
 
-    return null
+    return null;
 };
 
 const useAuthStore = create<AuthState>()(
@@ -59,7 +58,7 @@ const useAuthStore = create<AuthState>()(
                     console.error('로그아웃 중 오류가 발생했습니다:', error.message);
                     return null;
                 }
-                set({ isLoggedIn: false, userInfo: null, errorMessage: '' })
+                set({ isLoggedIn: false, userInfo: null, errorMessage: '' });
             },
         }),
         {
@@ -68,4 +67,5 @@ const useAuthStore = create<AuthState>()(
         }
     )
 );
+
 export default useAuthStore;

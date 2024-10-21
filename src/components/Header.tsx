@@ -2,7 +2,7 @@ import Link from "next/link";
 import useAuthStore from "@/store/authStore";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 const Header: React.FC = () => {
   const { isLoggedIn, userInfo } = useAuthStore();
@@ -12,18 +12,17 @@ const Header: React.FC = () => {
   const lf_logout = () => {
     logout();
 
-    localStorage.removeItem("loginUserInfo");
-    alert("로그아웃되었습니다");
+    const currentState = useAuthStore.getState();
 
-    router.push("/login");
-  };
+    if (currentState.isLoggedIn) {
+      localStorage.removeItem("loginUserInfo");
+      alert("로그아웃되었습니다");
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      alert("세션이 만료되었습니다. 다시 로그인해주세요.");
       router.push("/login");
+    } else {
+      alert("로그아웃 중 오류가 발생했습니다.");
     }
-  }, [isLoggedIn, router]);
+  };
 
   return (
     <header className="flex_js_between">

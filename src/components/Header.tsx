@@ -9,10 +9,12 @@ const Header: React.FC = () => {
   const router = useRouter();
   const logout = useAuthStore((state) => state.logout);
 
-  const handleLogout = () => {
+  const lf_logout = () => {
     logout();
+
     localStorage.removeItem("loginUserInfo");
     alert("로그아웃되었습니다");
+
     router.push("/login");
   };
 
@@ -58,7 +60,7 @@ const Header: React.FC = () => {
             layout="cover"
             onClick={() => router.push("/book")}
           />
-          <button className="g_btn" onClick={() => handleLogout()}>
+          <button className="g_btn" onClick={() => lf_logout()}>
             로그아웃
           </button>
         </div>

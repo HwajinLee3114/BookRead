@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
-import LoginForm from "./LoginForm";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+
+import LoginForm from "./LoginForm";
 
 const LoginPage: React.FC = () => {
   const router = useRouter();
@@ -13,8 +14,8 @@ const LoginPage: React.FC = () => {
   };
 
   const handleSnsLogin = (loginType: string) => {
-    console.log(loginType)
-  }
+    console.log(loginType);
+  };
 
   return (
     <div className="g_main_content center">
@@ -23,7 +24,8 @@ const LoginPage: React.FC = () => {
         alt="로고"
         width={217}
         height={36}
-        objectFit="contain"
+        style={{ objectFit: "contain" }}
+        priority
       />
       <LoginForm />
 
@@ -47,32 +49,32 @@ const LoginPage: React.FC = () => {
           alt="카카오 로그인"
           width={40}
           height={40}
-          objectFit="contain"
-          onClick={() => handleSnsLogin('kakao')}
+          style={{ objectFit: "contain" }}
+          onClick={() => handleSnsLogin("kakao")}
         />
         <Image
           src="/img/naver.png"
           alt="네이버 로그인"
           width={40}
           height={40}
-          objectFit="contain"
-          onClick={() => handleSnsLogin('naver')}
+          style={{ objectFit: "contain" }}
+          onClick={() => handleSnsLogin("naver")}
         />
         <Image
           src="/img/google.png"
           alt="구글 로그인"
           width={40}
           height={40}
-          objectFit="contain"
-          onClick={() => handleSnsLogin('google')}
+          style={{ objectFit: "contain" }}
+          onClick={() => handleSnsLogin("google")}
         />
         <Image
           src="/img/ios.png"
           alt="애플 로그인"
           width={40}
           height={40}
-          objectFit="contain"
-          onClick={() => handleSnsLogin('ios')}
+          style={{ objectFit: "contain" }}
+          onClick={() => handleSnsLogin("ios")}
         />
       </div>
     </div>

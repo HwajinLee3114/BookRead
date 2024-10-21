@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+
+import useAuthStore from "@/store/authStore";
 import { validateField } from "@/utils/comn";
 import InputField from "@/components/InputField";
-import useAuthStore from "@/store/authStore";
-import { useRouter } from "next/navigation";
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -13,7 +14,6 @@ const LoginForm: React.FC = () => {
   const [logining, setLogining] = useState(false);
 
   const errorMessage = useAuthStore((state) => state.errorMessage);
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const login = useAuthStore((state) => state.login);
   const router = useRouter();
 
@@ -57,10 +57,14 @@ const LoginForm: React.FC = () => {
 
     await login(email, password);
 
-    if (isLoggedIn) {
-      setLogining(false);
+    const currentState = useAuthStore.getState();
+
+    setLogining(false);
+    if (currentState.isLoggedIn) {
       alert("로그인에 성공하였습니다.");
       router.push("/");
+    } else {
+      alert(currentState.errorMessage);
     }
   };
 

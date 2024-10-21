@@ -1,27 +1,29 @@
 import Link from "next/link";
-import useAuthStore from "@/store/authStore";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+import useAuthStore from "@/store/authStore";
+// import { useEffect } from "react";
 
 const Header: React.FC = () => {
   const { isLoggedIn, userInfo } = useAuthStore();
   const router = useRouter();
   const logout = useAuthStore((state) => state.logout);
 
-  const handleLogout = () => {
+  const lf_logout = () => {
     logout();
-    localStorage.removeItem("loginUserInfo");
-    alert("로그아웃되었습니다");
-    router.push("/login");
-  };
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+    const currentState = useAuthStore.getState();
+
+    if (currentState.isLoggedIn) {
+      localStorage.removeItem("loginUserInfo");
+      alert("로그아웃되었습니다");
+
       router.push("/login");
+    } else {
+      alert("로그아웃 중 오류가 발생했습니다.");
     }
-  }, [isLoggedIn, router]);
+  };
 
   return (
     <header className="flex_js_between">
@@ -32,7 +34,7 @@ const Header: React.FC = () => {
             alt="로고"
             width={85}
             height={15}
-            objectFit="contain"
+            style={{ objectFit: "contain" }}
           />
         </Link>
       </div>
@@ -55,10 +57,10 @@ const Header: React.FC = () => {
             width={40}
             height={40}
             style={{ borderRadius: "50%" }}
-            layout="cover"
             onClick={() => router.push("/book")}
+            priority
           />
-          <button className="g_btn" onClick={() => handleLogout()}>
+          <button className="g_btn" onClick={() => lf_logout()}>
             로그아웃
           </button>
         </div>

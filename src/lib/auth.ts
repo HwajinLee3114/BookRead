@@ -9,6 +9,6 @@ export const getSession = () => {
     // 토큰이 유효한 경우, 사용자 정보를 반환
     return { nickname: "유저이름" }; // 실제 유저 정보를 가져오는 로직 추가
   }
-  
+
   return null; // 로그인하지 않은 경우
 };

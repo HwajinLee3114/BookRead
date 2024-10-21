@@ -8,7 +8,7 @@ type LayoutProps = {
 };
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-//   const pathname = usePathname();
+  //   const pathname = usePathname();
   return (
     <>
       <Header />

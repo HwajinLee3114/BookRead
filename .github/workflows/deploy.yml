@@ -6,12 +6,14 @@ on:
       - master
   pull_request:
     types:
-      - opened, synchronize, reopened
+      - opened
+      - synchronize
+      - reopened
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    needs: test  # 테스트 작업이 성공해야 실행
+    # needs: test  # 테스트 작업이 성공해야 실행
     steps:
       - name: Checkout code
         uses: actions/checkout@v2

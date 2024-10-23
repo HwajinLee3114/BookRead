@@ -9,7 +9,8 @@ import "./styles/layout.css";
 
 import BottomMenu from "@/components/BottomMenu";
 import useAuthStore from "@/store/authStore";
-import Toast from "@/components/Toast";
+import Toast from "@/components/toast/Toast";
+import ToastContainer from "@/components/toast/ToastContainer";
 
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathname = usePathname();
@@ -46,7 +47,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <body>
         {children}
         {!isExcludedPage && tmpIsLoggedIn.current && <BottomMenu />}
-        <Toast msg="여기보수" />
+        <ToastContainer />
       </body>
     </html>
   );

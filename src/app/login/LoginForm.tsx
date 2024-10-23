@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import useAuthStore from "@/store/authStore";
 import { validateField } from "@/utils/comn";
 import InputField from "@/components/InputField";
+import useToastStore from "@/store/toastStore";
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -16,6 +17,8 @@ const LoginForm: React.FC = () => {
   const errorMessage = useAuthStore((state) => state.errorMessage);
   const login = useAuthStore((state) => state.login);
   const router = useRouter();
+
+  const addToast = useToastStore((state) => state.addToast);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -61,18 +64,12 @@ const LoginForm: React.FC = () => {
 
     setLogining(false);
     if (currentState.isLoggedIn) {
-      alert("로그인에 성공하였습니다.");
+      addToast("로그인에 성공하였습니다.");
       router.push("/");
     } else {
-      alert(currentState.errorMessage);
+      addToast(currentState.errorMessage);
     }
   };
-
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     router.push("/"); // 홈으로 이동
-  //   }
-  // }, [isLoggedIn, router]);
 
   return (
     <div className="g_form_container mgt_1r">
@@ -95,7 +92,7 @@ const LoginForm: React.FC = () => {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      {errorMessage && logining && <p className="g_invalid">{errorMessage}</p>}
+      {/* {errorMessage && logining && <p className="g_invalid">{errorMessage}</p>} */}
 
       <button type="button" className="g_btn mgt_1r" onClick={handleLogin}>
         로그인

@@ -52,7 +52,7 @@ const LoginForm: React.FC = () => {
 
   const lf_login = async () => {
     if (!email || !password) {
-      alert("로그인 정보를 입력해 주세요.");
+      addToast("로그인 정보를 입력해 주세요.");
       return false;
     }
 

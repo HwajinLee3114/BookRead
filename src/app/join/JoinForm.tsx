@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { validateField } from "@/utils/comn";
 import InputField from "@/components/InputField";
 import { supabase } from "@/utils/supabase";
+import useToastStore from "@/store/toastStore";
 
 const JoinForm: React.FC = () => {
   const [nickname, setNickname] = useState<string>("");
@@ -20,6 +21,7 @@ const JoinForm: React.FC = () => {
   const [repasswordError, setRePasswordError] = useState<string>("");
 
   const router = useRouter();
+  const addToast = useToastStore((state) => state.addToast);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -54,7 +56,7 @@ const JoinForm: React.FC = () => {
       .ilike("nickname", `%${nickname}%`);
 
     if (error) {
-      alert(error.message);
+      addToast(error.message);
       return;
     }
 
@@ -98,7 +100,7 @@ const JoinForm: React.FC = () => {
     const user = data.user;
     if (user) {
       console.info("회원가입 완료", user);
-      alert("회원가입이 완료되었습니다.");
+      addToast("회원가입이 완료되었습니다.");
       router.push("/login");
     }
   };

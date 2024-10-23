@@ -5,12 +5,14 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 import useAuthStore from "@/store/authStore";
+import useToastStore from "@/store/toastStore";
 // import { useEffect } from "react";
 
 const Header: React.FC = () => {
   const { isLoggedIn, userInfo } = useAuthStore();
   const router = useRouter();
   const logout = useAuthStore((state) => state.logout);
+  const addToast = useToastStore((state) => state.addToast);
 
   const lf_logout = () => {
     logout();
@@ -19,11 +21,11 @@ const Header: React.FC = () => {
 
     if (currentState.isLoggedIn) {
       localStorage.removeItem("loginUserInfo");
-      alert("로그아웃되었습니다");
+      addToast("로그아웃되었습니다");
 
       router.push("/login");
     } else {
-      alert("로그아웃 중 오류가 발생했습니다.");
+      addToast("로그아웃 중 오류가 발생했습니다.");
     }
   };
 

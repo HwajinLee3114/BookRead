@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import useAuthStore from "@/store/authStore";
+import Image from "next/image";
 // import { useEffect } from "react";
 
 const Header: React.FC = () => {
@@ -30,7 +31,14 @@ const Header: React.FC = () => {
     <header className="flex_js_between">
       <div className="logo ver_align">
         <Link href="/">
-          <img src="/img/logo.png" alt="로고" className="h-5 object-contain" />
+          <Image
+            src="/img/logo.png"
+            alt="로고"
+            width={100}
+            height={15}
+            style={{ objectFit: "contain" }}
+            priority
+          />
         </Link>
       </div>
       {/* <nav className="nav ver_align">
@@ -46,22 +54,17 @@ const Header: React.FC = () => {
       {isLoggedIn ? (
         <div className="g_flex gap_10">
           <p>{userInfo?.nickname}</p>
-          <img
-            src="/img/sample.jpg"
-            alt="profile"
-            className="w-9 h-9 rounded-full object-cover"
-            onClick={() => router.push("/book")}
-          />
-
-          {/* <Image
-            src="/img/sample.jpg"
-            alt="profile"
-            width={28}
-            height={28}
-            className="rounded-full"
-            onClick={() => router.push("/book")}
-            priority
-          /> */}
+          <div className="w-10 h-10 flex items-center justify-center">
+            <Image
+              src="/img/sample.jpg"
+              alt="profile"
+              width={28}
+              height={28}
+              className="rounded-full h-full w-full object-cover"
+              onClick={() => router.push("/book")}
+              priority
+            />
+          </div>
           <button className="g_btn" onClick={() => lf_logout()}>
             로그아웃
           </button>
